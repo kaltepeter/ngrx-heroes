@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeroesComponent } from './containers/heroes/heroes.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HeroesComponent],
   imports: [
     CommonModule
   ]
