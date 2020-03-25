@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from 'src/app/hero.service';
 import { Hero } from 'src/app/hero';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { HeroService } from 'src/app/core/hero.service';
 
 @Component({
   selector: 'app-dashboard',

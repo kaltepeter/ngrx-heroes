@@ -6,6 +6,10 @@ export class HeroMockService {
     return of([]);
   }
 
+  getTopHeroes(): Observable<Hero[]> {
+    return of([]);
+  }
+
   getHero(id: number): Observable<Hero> {
     return of(null);
   }
