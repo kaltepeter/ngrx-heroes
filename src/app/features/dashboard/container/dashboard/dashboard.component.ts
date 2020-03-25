@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from 'src/app/hero';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HeroService } from 'src/app/core/hero.service';
+import { Hero } from 'src/app/core/hero';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,8 +19,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroes$ = this.heroService
-      .getHeroes();
+    this.heroes$ = this.heroService.heroes$;
+    this.heroService.getTopHeroes();
   }
 
   onHeroClicked(hero: Hero) {
