@@ -7,6 +7,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomRouterStateSerializer } from './state-utils';
 import { environment } from 'src/environments/environment';
 import { appReducer, appMetaReducers } from './app.reducer';
+import * as fromHero from './hero/hero.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { HeroEffects } from './hero/hero.effects';
 
 @NgModule({
   declarations: [],
@@ -19,7 +22,9 @@ import { appReducer, appMetaReducers } from './app.reducer';
         strictActionImmutability: true,
       }
     }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature(fromHero.heroFeatureKey, fromHero.reducer),
+    EffectsModule.forFeature([HeroEffects])
   ]
 })
 export class StateModule {
