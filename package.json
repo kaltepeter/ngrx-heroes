@@ -13,6 +13,7 @@
     "@angular/router": "7.2.15",
     "@ngrx/effects": "^9.0.0",
     "@ngrx/entity": "^9.0.0",
+    "@ngrx/schematics": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "@types/jasmine": "2.8.16",
     "@types/jasminewd2": "2.0.6",
