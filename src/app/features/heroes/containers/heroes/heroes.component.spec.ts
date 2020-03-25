@@ -3,8 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { HeroesComponent } from './heroes.component';
 import { HeroesListComponent } from './../../components/heroes-list/heroes-list.component';
-import { HeroService } from '../../../../core/hero.service';
-import { HeroMockService } from '../../../../core/hero.mock.service';
+import { Store } from '@ngrx/store';
+import { TestStore } from 'src/app/testing/test.store';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -14,7 +14,7 @@ describe('HeroesComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [HeroesComponent, HeroesListComponent],
-      providers: [{ provide: HeroService, useClass: HeroMockService }]
+      providers: [{ provide: Store, useClass: TestStore }]
     }).compileComponents();
   }));
 
