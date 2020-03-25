@@ -1,20 +1,17 @@
-import { Action } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
 
+import { storeFreeze } from 'ngrx-store-freeze';
 
-export const appFeatureKey = 'app';
+import { AppState } from './app.interfaces';
+import { environment } from '../../environments/environment';
+import { heroReducer } from './hero/hero.reducer';
 
-export interface State {
-
-}
-
-export const initialState: State = {
-
+export const appReducer: ActionReducerMap<AppState> = {
+  hero: heroReducer,
+  router: routerReducer
 };
 
-export function reducer(state = initialState, action: Action): State {
-  switch (action.type) {
-
-    default:
-      return state;
-  }
-}
+export const appMetaReducers: MetaReducer<AppState>[] = !environment.production
+  ? [storeFreeze]
+  : [];

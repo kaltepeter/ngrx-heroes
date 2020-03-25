@@ -6,12 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomRouterStateSerializer } from './state-utils';
 import { environment } from 'src/environments/environment';
+import { appReducer, appMetaReducers } from './app.reducer';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forRoot({}, {
+    StoreModule.forRoot(appReducer, {
+      metaReducers: appMetaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
