@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { HeroService } from 'src/app/core/hero.service';
 import { Hero } from 'src/app/core/hero';
-import { map } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.interfaces';
+import { topHeroes } from 'src/app/state';
+import { SearchAllHeroEntities } from 'src/app/state/hero/hero.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +15,11 @@ import { map } from 'rxjs/operators';
 export class DashboardComponent implements OnInit {
   heroes$: Observable<Hero[]>;
 
-  constructor(private router: Router, private heroService: HeroService) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
-    this.heroService.getAll();
-    this.heroes$ = this.heroService.entities$.pipe(map(heroes => heroes.slice(1, 5)));
+    this.heroes$ = this.store.pipe(select(topHeroes));
+    this.store.dispatch(new SearchAllHeroEntities());
   }
 
   onHeroClicked(hero: Hero) {

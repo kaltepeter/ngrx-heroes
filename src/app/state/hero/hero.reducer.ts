@@ -1,23 +1,38 @@
+import { Hero } from '../../core/hero';
 
-import { HeroActions, HeroActionTypes } from './hero.actions';
+import * as heroActions from './hero.actions';
 
-export const heroFeatureKey = 'hero';
-
-export interface State {
-
+export interface HeroState {
+  heroes: Hero[];
+  hero: Hero;
 }
 
-export const initialState: State = {
-
+export const initialState: HeroState = {
+  heroes: [],
+  hero: null
 };
 
-export function reducer(state = initialState, action: HeroActions): State {
+export function heroReducer(
+  state = initialState,
+  action: heroActions.HeroActions
+): HeroState {
   switch (action.type) {
+    case heroActions.HeroActionTypes.SearchAllHeroEntitiesSuccess: {
+      return {
+        hero: null,
+        heroes: action.payload.result
+      };
+    }
 
-    case HeroActionTypes.LoadHeros:
-      return state;
+    case heroActions.HeroActionTypes.LoadHeroByIdSuccess: {
+      return {
+        heroes: [],
+        hero: action.payload.result
+      };
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }

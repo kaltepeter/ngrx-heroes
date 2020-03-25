@@ -7,25 +7,20 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomRouterStateSerializer } from './state-utils';
 import { environment } from 'src/environments/environment';
 import { appReducer, appMetaReducers } from './app.reducer';
-import * as fromHero from './hero/hero.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HeroEffects } from './hero/hero.effects';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
+    StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(appReducer, {
-      metaReducers: appMetaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      }
+      metaReducers: appMetaReducers
     }),
+    EffectsModule.forRoot([HeroEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreModule.forFeature(fromHero.heroFeatureKey, fromHero.reducer),
-    EffectsModule.forFeature([HeroEffects])
-  ]
+  ],
+  declarations: []
 })
 export class StateModule {
   static forRoot(): ModuleWithProviders {

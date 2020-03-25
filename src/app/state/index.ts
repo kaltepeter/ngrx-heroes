@@ -1,7 +1,5 @@
 import { createSelector } from '@ngrx/store';
-
-import { Hero } from '../../core/hero';
-import { HeroState } from './hero.reducer';
+import { HeroState } from './hero/hero.reducer';
 
 export interface AppState {
   hero: HeroState;
