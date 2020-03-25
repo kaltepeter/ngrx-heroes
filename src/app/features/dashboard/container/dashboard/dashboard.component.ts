@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HeroService } from 'src/app/core/hero.service';
 import { Hero } from 'src/app/core/hero';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +16,8 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private heroService: HeroService) {}
 
   ngOnInit() {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroes$ = this.heroService.heroes$;
-    this.heroService.getTopHeroes();
+    this.heroService.getAll();
+    this.heroes$ = this.heroService.entities$.pipe(map(heroes => heroes.slice(1, 5)));
   }
 
   onHeroClicked(hero: Hero) {

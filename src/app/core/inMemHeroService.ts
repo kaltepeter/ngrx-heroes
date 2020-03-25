@@ -15,6 +15,7 @@ export class InMemHeroService implements InMemoryDbService {
       { id: 19, name: 'Magma' },
       { id: 20, name: 'Tornado' }
     ];
-    return { heroes };
+    const hero = [...heroes];
+    return { heroes, hero };
   }
 }
