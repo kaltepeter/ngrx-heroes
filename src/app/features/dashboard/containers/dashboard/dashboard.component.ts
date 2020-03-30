@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Hero } from 'src/app/core/hero';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.interfaces';
-import { topHeroes } from 'src/app/state';
 import { SearchAllHeroEntities } from 'src/app/state/hero/hero.actions';
+import { topHeroes } from 'src/app/state/hero';
 
 @Component({
   selector: 'app-dashboard',

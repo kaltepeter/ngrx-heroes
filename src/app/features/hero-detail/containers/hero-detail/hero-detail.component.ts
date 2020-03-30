@@ -4,11 +4,10 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
 import { Hero } from '../../../../core/hero';
-import { HeroService } from '../../../../core/hero.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.interfaces';
 import { LoadHeroById } from 'src/app/state/hero/hero.actions';
-import { selectedHero } from 'src/app/state';
+import { selectedHero } from 'src/app/state/hero';
 
 @Component({
   selector: 'app-hero-detail',

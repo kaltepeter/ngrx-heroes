@@ -5,8 +5,8 @@ import { HeroService } from '../../../../core/hero.service';
 import { Hero } from '../../../../core/hero';
 import { AppState } from 'src/app/state/app.interfaces';
 import { Store, select } from '@ngrx/store';
-import { heroes } from 'src/app/state';
 import { SearchAllHeroEntities } from 'src/app/state/hero/hero.actions';
+import { heroes } from 'src/app/state/hero';
 
 @Component({
   selector: 'app-heroes',
