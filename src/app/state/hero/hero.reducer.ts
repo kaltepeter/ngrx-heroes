@@ -9,9 +9,9 @@ export interface HeroState extends EntityState<Hero> {
   error: string;
 }
 
-export const heroAdapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
+export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
 
-export const initialHeroState: HeroState = heroAdapter.getInitialState({
+export const initialHeroState: HeroState = adapter.getInitialState({
   selectedId: null,
   loading: false,
   error: ''
@@ -24,13 +24,13 @@ export function heroReducer(
   switch (action.type) {
     case HeroActionTypes.SearchAllHeroEntities:
       return {
-          ...heroAdapter.removeAll(state),
+          ...adapter.removeAll(state),
           loading: true,
           error: ''
       };
     case HeroActionTypes.SearchAllHeroEntitiesSuccess:
       return {
-        ...heroAdapter.addAll(action.payload.result, state),
+        ...adapter.addAll(action.payload.result, state),
         loading: false,
         error: ''
       };
@@ -44,7 +44,7 @@ export function heroReducer(
 
     case HeroActionTypes.LoadHeroById:
       return {
-        ...heroAdapter.removeAll(state),
+        ...adapter.removeAll(state),
         selectedId: action.payload.id,
         loading: true,
         error: ''
@@ -52,7 +52,7 @@ export function heroReducer(
 
     case HeroActionTypes.LoadHeroByIdSuccess:
       return {
-        ...heroAdapter.addOne(action.payload.result, state),
+        ...adapter.addOne(action.payload.result, state),
         loading: false,
         error: ''
       };

@@ -5,6 +5,8 @@ import { TopHeroesListComponent } from '../../components/top-heroes-list/top-her
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { TestStore } from 'src/app/testing/test.store';
+import { HeroMockService } from 'src/app/core/hero.mock.service';
+import { HeroService } from 'src/app/core/hero.service';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -14,7 +16,8 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [DashboardComponent, TopHeroesListComponent],
-      providers: [{ provide: Store, useClass: TestStore }]
+      providers: [{ provide: Store, useClass: TestStore },
+      {provide: HeroService, useClass: HeroMockService}]
     }).compileComponents();
   }));
 

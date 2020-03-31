@@ -8,7 +8,7 @@ export const {
   selectEntities: entities,
   selectAll: heroes,
   selectTotal: heroCount
-} = fromHeroState.heroAdapter.getSelectors(getHeroState);
+} = fromHeroState.adapter.getSelectors(getHeroState);
 
 export const topHeroes = createSelector(
   heroes,

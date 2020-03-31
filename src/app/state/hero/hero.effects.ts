@@ -25,12 +25,12 @@ import { HeroService } from '../../core/hero.service';
 @Injectable()
 export class HeroEffects {
   @Effect()
-  search: Observable<Action> = this.actions$.pipe(
+  search = this.actions$.pipe(
     ofType<SearchAllHeroEntities>(HeroActionTypes.SearchAllHeroEntities),
     exhaustMap(() =>
       this.service.getHeroes().pipe(
         map(
-          (entities: Array<Hero>) =>
+          (entities: Hero[]) =>
             new SearchAllHeroEntitiesSuccess({ result: entities })
         ),
         catchError(({ message }) =>
@@ -41,7 +41,7 @@ export class HeroEffects {
   );
 
   @Effect()
-  loadById: Observable<Action> = this.actions$.pipe(
+  loadById = this.actions$.pipe(
     ofType<LoadHeroById>(HeroActionTypes.LoadHeroById),
     switchMap(action =>
       this.service.getHero(action.payload.id).pipe(
